@@ -12,7 +12,7 @@ const personalInfo = {
   title:
     "Ingeniero de Ventas Técnicas y Entusiasta de IA y Datos - Transformando las Ventas B2B con Ciencia de Datos - Profesor Invitado en People Analytics - Experiencia en Ventas de Tecnología Industrial",
   location: "Lima, Perú",
-  phone: "https://wa.me/51989388309",
+  whatsapp: "https://wa.me/51989388309",
   phone: "+51 989 388 309",
   email: "jemartinezm@gmail.com", // Or preferred email
   linkedin: "https://www.linkedin.com/in/enriquemartinezmejia",

@@ -1,0 +1,368 @@
+/* --- Global Styles & Fonts --- */
+/* --- Estilos Globales y Fuentes --- */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.7; /* Improved readability */
+  margin: 0;
+  padding: 0;
+  background-color: #f4f8fc; /* Slightly cooler background */
+  color: #343a40;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- Navbar Styles --- */
+/* --- Estilos de la Barra de Navegación --- */
+.navbar {
+  background-color: #004a99; /* Darker shade of blue */
+  padding: 10px 40px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center; /* Center buttons */
+  flex-wrap: wrap; /* Allow wrapping */
+  gap: 10px; /* Space between buttons */
+  position: sticky; /* Make navbar sticky */
+  top: 0;
+  z-index: 1000; /* Ensure navbar is on top */
+}
+
+.nav-button {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid transparent; /* Start transparent */
+  padding: 8px 18px; /* Adjusted padding */
+  border-radius: 20px; /* Pill shape */
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 500;
+  transition: all 0.3s ease; /* Smooth transition for all properties */
+  text-transform: uppercase; /* Uppercase text */
+  letter-spacing: 0.5px; /* Slight spacing */
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.15); /* Subtle hover */
+  border-color: rgba(255, 255, 255, 0.5); /* Border appears on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+.nav-button.active {
+  background-color: #ffffff; /* White background for active */
+  color: #004a99; /* Blue text for active */
+  border-color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Main Content Area --- */
+/* --- Área de Contenido Principal --- */
+.main-content {
+  flex-grow: 1; /* Take remaining vertical space */
+  padding: 30px 15px; /* Padding for content */
+  max-width: 950px; /* Limit content width */
+  margin: 0 auto; /* Center content */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Page Content & Transitions --- */
+/* --- Contenido de Página y Transiciones --- */
+.page-content {
+  background-color: #ffffff;
+  padding: 35px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  width: 100%; /* Ensure it takes full width of container */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.page-content.animating-exit {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+/* --- General Section Styling --- */
+/* --- Estilos Generales de Sección --- */
+.section {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  /* Removed border-bottom for cleaner look between sections within a page */
+}
+
+.section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.section-title {
+  color: #0056b3;
+  border-bottom: 3px solid #0056b3; /* Thicker border */
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  font-size: 1.6em; /* Larger title */
+  font-weight: 600;
+}
+
+h1 {
+  color: #212529;
+  margin-bottom: 10px;
+  font-size: 2.4em; /* Larger name */
+  font-weight: 700;
+}
+
+h3 {
+  color: #343a40;
+  margin-bottom: 5px;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+/* --- Personal Info / Home Page Specific Styles --- */
+/* --- Estilos Específicos de Info Personal / Página Inicio --- */
+.personal-info .header-content {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Space between photo and text */
+  margin-bottom: 30px; /* Space before objective */
+  flex-wrap: wrap; /* Allow wrapping */
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Circular photo */
+  object-fit: cover; /* Ensure image covers space */
+  border: 4px solid #0056b3; /* Border matching theme */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.header-text {
+  flex-grow: 1; /* Take remaining space */
+}
+
+.personal-info .title {
+  font-style: normal;
+  color: #495057;
+  margin-bottom: 15px;
+  font-size: 1.15em; /* Slightly larger */
+  line-height: 1.6;
+}
+
+.contact-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px; /* Row and column gap */
+  font-size: 0.95em;
+  color: #495057;
+  margin-top: 15px; /* Space above contact details */
+}
+
+.contact-details span {
+  display: inline-flex;
+  align-items: center;
+}
+.contact-details a {
+  color: #0056b3;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.contact-details a:hover {
+  color: #003d80; /* Darker blue on hover */
+  text-decoration: underline;
+}
+.contact-details svg {
+  margin-right: 8px;
+  color: #0056b3;
+  flex-shrink: 0; /* Prevent icon shrinking */
+}
+
+.objective {
+  margin-top: 25px; /* Space above objective section */
+  padding-top: 20px;
+  border-top: 1px solid #dee2e6; /* Separator line */
+}
+.objective p {
+  font-size: 1.05em;
+  color: #343a40;
+}
+
+/* --- Experience, Education, Project, Volunteering Entries --- */
+/* --- Entradas de Experiencia, Educación, Proyecto, Voluntariado --- */
+.job-entry,
+.education-entry,
+.project-entry,
+.volunteering-entry {
+  margin-bottom: 25px; /* Spacing between entries */
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #e0e0e0; /* Dashed separator */
+}
+.job-entry:last-child,
+.education-entry:last-child,
+.project-entry:last-child,
+.volunteering-entry:last-child {
+  border-bottom: none; /* No border for last item */
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.job-period,
+.education-period,
+.volunteering-period,
+.education-field {
+  font-size: 0.9em;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+.education-field {
+  font-style: italic;
+}
+
+ul {
+  padding-left: 25px; /* Indent list */
+  margin-top: 10px;
+  list-style-type: disc;
+}
+
+li {
+  margin-bottom: 8px;
+  color: #495057;
+  line-height: 1.7; /* Improve list readability */
+}
+
+/* --- Skills Section --- */
+/* --- Sección de Habilidades --- */
+.skill-category h4 {
+  margin-top: 25px;
+  margin-bottom: 12px;
+  color: #343a40;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+.skill-category:first-of-type h4 {
+  margin-top: 0; /* Remove top margin for first category */
+}
+
+.skill-list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-item {
+  background-color: #e9f1f9; /* Lighter blue background */
+  color: #004a99; /* Darker blue text */
+  padding: 6px 15px;
+  border-radius: 18px;
+  font-size: 0.9em;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: default; /* Indicate non-interactive */
+}
+.skill-item:hover {
+  background-color: #d1e3f7; /* Slightly darker on hover */
+  transform: scale(1.05); /* Slight scale effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Certifications Section --- */
+/* --- Sección de Certificaciones --- */
+.certification-list {
+  list-style: disc;
+  padding-left: 25px;
+}
+
+.certification-item {
+  margin-bottom: 10px;
+  font-size: 0.95em;
+}
+
+.certification-item i {
+  color: #6c757d;
+}
+
+/* --- Projects Section --- */
+/* --- Sección de Proyectos --- */
+.project-tech {
+  font-size: 0.9em;
+  color: #6c757d;
+  margin-top: 10px;
+}
+.project-tech strong {
+  color: #495057;
+}
+
+/* --- Responsive Adjustments --- */
+/* --- Ajustes Responsivos --- */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px;
+    justify-content: flex-start; /* Align left on smaller screens */
+    overflow-x: auto; /* Allow horizontal scroll if needed */
+  }
+  .nav-button {
+    padding: 6px 12px;
+    font-size: 0.9em;
+  }
+  .main-content {
+    padding: 20px 10px;
+  }
+  .page-content {
+    padding: 25px 20px;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  .section-title {
+    font-size: 1.4em;
+  }
+  .personal-info .header-content {
+    flex-direction: column; /* Stack photo and text */
+    align-items: flex-start; /* Align items left */
+    gap: 20px;
+  }
+  .profile-photo {
+    width: 120px;
+    height: 120px;
+  }
+  .contact-details {
+    font-size: 0.9em;
+    gap: 8px 15px;
+  }
+}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8em;
+  }
+  .personal-info .title {
+    font-size: 1.05em;
+  }
+  .section-title {
+    font-size: 1.3em;
+  }
+  h3 {
+    font-size: 1.1em;
+  }
+  .contact-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .contact-details span {
+    margin-right: 0;
+  } /* Remove right margin when stacked */
+}

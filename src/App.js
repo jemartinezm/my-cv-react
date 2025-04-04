@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+// Import the CSS file (needed for actual execution, ignored by preview)
+// Importar el archivo CSS (necesario para ejecución real, ignorado por preview)
 import "./App.css";
+import fotoPerfil from "./assets/enrique_martinez_mejia.png";
 
 // --- CV Data (Organized as objects/arrays) ---
 // --- Datos del CV (Organizados como objetos/arrays) ---
@@ -10,17 +13,21 @@ const personalInfo = {
     "Ingeniero de Ventas Técnicas y Entusiasta de IA y Datos - Transformando las Ventas B2B con Ciencia de Datos - Profesor Invitado en People Analytics - Experiencia en Ventas de Tecnología Industrial",
   location: "Lima, Perú",
   phone: "+51 989 388 309",
-  email: "jemartinezm@gmail.com", // Or preferred email
+  email: "enrique.martinez@mat-research.com", // Or preferred email
   linkedin: "https://www.linkedin.com/in/enriquemartinezmejia",
   // --- Placeholder for photo ---
   // --- Marcador de posición para foto ---
-  photoUrl:
-    "https://media.licdn.com/dms/image/v2/D4E03AQFN-X4ufhimfQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1724339881437?e=1749081600&v=beta&t=xYqAIFzS4jud1bUtOHop07RoF04fGVZlRWwW9Wx5sg0", // Replace with your actual photo URL / Reemplaza con la URL de tu foto real
+  photoUrl: fotoPerfil, // Replace with your actual photo URL / Reemplaza con la URL de tu foto real
+  // --- Placeholder for YouTube Video Embed URL ---
+  // --- Marcador de posición para URL de Inserción de Video de YouTube ---
+  youtubeEmbedUrl: "https://www.youtube.com/watch?v=krbWdZkj9M0", // <-- !!! REEMPLAZA ESTO con la URL "embed" de tu video de YouTube !!!
 };
 
 const objective =
   "Mi objetivo es poder apoyar al área comercial a potenciar su presencia digital, a ser más educativo con el cliente, a promover la formación y la excelencia técnica, y empezar a desarrollar un mejor camino para el análisis de datos en Perú.";
 
+// --- Other Data Arrays (experiences, education, skills, etc. - remain unchanged) ---
+// --- Otros Arrays de Datos (experiences, education, skills, etc. - permanecen sin cambios) ---
 const experiences = [
   {
     title: "Docente de Inteligencia Artificial",
@@ -106,7 +113,6 @@ const experiences = [
   },
   // Add more experiences from LinkedIn/CV if desired
 ];
-
 const education = [
   {
     institution: "The Wharton School (Online)",
@@ -132,7 +138,6 @@ const education = [
     description: "", // Add description if desired
   },
 ];
-
 const skills = {
   "IA & Data Science": [
     "Python (Machine Learning, Pandas, Numpy)",
@@ -171,7 +176,6 @@ const skills = {
   ],
   Idiomas: ["Español (Nativo)", "Inglés (Competencia profesional completa)"],
 };
-
 const certifications = [
   // Keep the full list from previous version
   {
@@ -297,7 +301,6 @@ const certifications = [
     id: "44FJJX23BU7R",
   }, // Date not specified
 ];
-
 const projects = [
   // Keep the full list from previous version
   {
@@ -365,7 +368,6 @@ const projects = [
     ],
   },
 ];
-
 const volunteering = [
   {
     role: "Voluntario Misionero",
@@ -376,6 +378,7 @@ const volunteering = [
       "Acompañamiento a jóvenes y niños. Talleres de liderazgo, energías renovables, matemáticas, física y proyectos municipales.",
   },
 ];
+// --- End of Data Arrays ---
 
 // Define page identifiers
 // Definir identificadores de página
@@ -405,7 +408,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
         <button
           key={page}
           className={`nav-button ${currentPage === page ? "active" : ""}`}
-          onClick={() => setCurrentPage(page)}
+          onClick={() => setCurrentPage(page)} // Simplified handler
         >
           {page}
         </button>
@@ -417,22 +420,48 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
 // Component for personal information header (Home Page)
 // Componente para la información personal (Página de Inicio)
 const PersonalInfo = ({ data }) => (
-  <div className="personal-info section page-content">
+  // Removed page-content class from here, will be applied by App
+  // Eliminada clase page-content de aquí, será aplicada por App
+  <div className="personal-info section">
     <div className="header-content">
-      <img
-        src={data.photoUrl}
-        alt="Foto de perfil de Enrique Martínez"
-        className="profile-photo"
-        onError={(e) => {
-          e.target.onerror = null;
-          e.target.src =
-            "https://placehold.co/150x150/cccccc/FFFFFF?text=Error";
-        }} // Basic fallback
-      />
+      {/* Profile Photo */}
+      {/* Foto de Perfil */}
+      <div className="profile-photo-container">
+        <img
+          src={data.photoUrl}
+          alt="Foto de perfil de Enrique Martínez"
+          className="profile-photo"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src =
+              "https://placehold.co/150x150/cccccc/FFFFFF?text=Error";
+          }} // Basic fallback
+        />
+      </div>
+
+      {/* YouTube Video */}
+      {/* Video de YouTube */}
+      {data.youtubeEmbedUrl && ( // Only render if URL exists
+        <div className="video-container">
+          <iframe
+            src={data.youtubeEmbedUrl}
+            title="Video de presentación de YouTube"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            className="youtube-video"
+          ></iframe>
+        </div>
+      )}
+
+      {/* Text Info */}
+      {/* Información de Texto */}
       <div className="header-text">
         <h1>{data.name}</h1>
         <p className="title">{data.title}</p>
         <div className="contact-details">
+          {/* Contact icons and links remain the same */}
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -513,8 +542,8 @@ const PersonalInfo = ({ data }) => (
         </div>
       </div>
     </div>
-    {/* Objective moved here */}
-    {/* Objetivo movido aquí */}
+    {/* Objective */}
+    {/* Objetivo */}
     <div className="objective">
       <SectionTitle title="Objetivo Profesional" />
       <p>{objective}</p>
@@ -522,8 +551,8 @@ const PersonalInfo = ({ data }) => (
   </div>
 );
 
-// Component for a single experience entry
-// Componente para una entrada de experiencia individual
+// --- Other Page Components (ExperiencePage, EducationPage, etc. - simplified) ---
+// --- Otros Componentes de Página (ExperiencePage, EducationPage, etc. - simplificados) ---
 const ExperienceItem = ({ job }) => (
   <div className="job-entry">
     <h3>
@@ -539,20 +568,16 @@ const ExperienceItem = ({ job }) => (
     </ul>
   </div>
 );
-
-// Component for the experience section (Page)
-// Componente para la sección de experiencia (Página)
 const ExperiencePage = ({ jobs }) => (
-  <div className="experience section page-content">
+  // Removed page-content class from here
+  // Eliminada clase page-content de aquí
+  <div className="experience section">
     <SectionTitle title="Experiencia Profesional" />
     {jobs.map((job, index) => (
       <ExperienceItem key={index} job={job} />
     ))}
   </div>
 );
-
-// Component for a single education entry
-// Componente para una entrada de educación individual
 const EducationItem = ({ edu }) => (
   <div className="education-entry">
     <h3>
@@ -565,22 +590,20 @@ const EducationItem = ({ edu }) => (
     )}
   </div>
 );
-
-// Component for the education section (Page)
-// Componente para la sección de educación (Página)
 const EducationPage = ({ items }) => (
-  <div className="education section page-content">
+  // Removed page-content class from here
+  // Eliminada clase page-content de aquí
+  <div className="education section">
     <SectionTitle title="Educación" />
     {items.map((item, index) => (
       <EducationItem key={index} edu={item} />
     ))}
   </div>
 );
-
-// Component for the skills section (Page)
-// Componente para la sección de habilidades (Página)
 const SkillsPage = ({ skillData }) => (
-  <div className="skills section page-content">
+  // Removed page-content class from here
+  // Eliminada clase page-content de aquí
+  <div className="skills section">
     <SectionTitle title="Habilidades" />
     {Object.entries(skillData).map(([category, skillList]) => (
       <div key={category} className="skill-category">
@@ -596,20 +619,16 @@ const SkillsPage = ({ skillData }) => (
     ))}
   </div>
 );
-
-// Component for a single certification item
-// Componente para un elemento de certificación individual
 const CertificationItem = ({ cert }) => (
   <li className="certification-item">
     {cert.name} - <i>{cert.issuer}</i> ({cert.date})
     {/* {cert.id && <span> (ID: {cert.id})</span>} */}
   </li>
 );
-
-// Component for the certifications section (Page)
-// Componente para la sección de certificaciones (Página)
 const CertificationsPage = ({ items }) => (
-  <div className="certifications section page-content">
+  // Removed page-content class from here
+  // Eliminada clase page-content de aquí
+  <div className="certifications section">
     <SectionTitle title="Licencias y Certificaciones" />
     <ul className="certification-list">
       {items.map((item, index) => (
@@ -618,9 +637,6 @@ const CertificationsPage = ({ items }) => (
     </ul>
   </div>
 );
-
-// Component for a single project entry
-// Componente para una entrada de proyecto individual
 const ProjectItem = ({ project }) => (
   <div className="project-entry">
     <h3>{project.title}</h3>
@@ -632,20 +648,16 @@ const ProjectItem = ({ project }) => (
     )}
   </div>
 );
-
-// Component for the projects section (Page)
-// Componente para la sección de proyectos (Página)
 const ProjectsPage = ({ items }) => (
-  <div className="projects section page-content">
+  // Removed page-content class from here
+  // Eliminada clase page-content de aquí
+  <div className="projects section">
     <SectionTitle title="Proyectos Destacados" />
     {items.map((item, index) => (
       <ProjectItem key={index} project={item} />
     ))}
   </div>
 );
-
-// Component for a single volunteering entry
-// Componente para una entrada de voluntariado individual
 const VolunteeringItem = ({ item }) => (
   <div className="volunteering-entry">
     <h3>
@@ -657,17 +669,17 @@ const VolunteeringItem = ({ item }) => (
     <p>{item.description}</p>
   </div>
 );
-
-// Component for the volunteering section (Page)
-// Componente para la sección de voluntariado (Página)
 const VolunteeringPage = ({ items }) => (
-  <div className="volunteering section page-content">
+  // Removed page-content class from here
+  // Eliminada clase page-content de aquí
+  <div className="volunteering section">
     <SectionTitle title="Voluntariado" />
     {items.map((item, index) => (
       <VolunteeringItem key={index} item={item} />
     ))}
   </div>
 );
+// --- End of Other Page Components ---
 
 // --- Main App Component ---
 // --- Componente Principal App ---
@@ -675,27 +687,21 @@ function App() {
   // State to manage the current page view
   // Estado para gestionar la vista de página actual
   const [currentPage, setCurrentPage] = useState(PAGES.HOME);
-  // State to manage animation trigger
-  // Estado para gestionar el disparador de animación
-  const [isAnimating, setIsAnimating] = useState(false);
 
-  // Handle page change with animation
-  // Manejar cambio de página con animación
+  // Simplified page change handler
+  // Manejador de cambio de página simplificado
   const handleSetCurrentPage = (page) => {
-    setIsAnimating(true); // Trigger exit animation
-    setTimeout(() => {
-      setCurrentPage(page);
-      setIsAnimating(false); // Reset animation state after content changes
-      // Scroll to top on page change
-      // Desplazar al principio en cambio de página
-      window.scrollTo(0, 0);
-    }, 300); // Match CSS transition duration / Igualar duración de transición CSS
+    if (page === currentPage) return;
+    setCurrentPage(page);
+    window.scrollTo(0, 0); // Scroll to top on page change
   };
 
   // Function to render the current page based on state
   // Función para renderizar la página actual según el estado
   const renderPage = () => {
-    switch (currentPage) {
+    switch (
+      currentPage // Render based on currentPage directly
+    ) {
       case PAGES.HOME:
         return <PersonalInfo data={personalInfo} />;
       case PAGES.EXPERIENCE:
@@ -717,8 +723,8 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* --- Embedded CSS --- */}
-      {/* --- CSS Incrustado --- */}
+      {/* CSS is expected in App.css */}
+      {/* Se espera el CSS en App.css */}
 
       {/* Navigation Bar */}
       {/* Barra de Navegación */}
@@ -727,17 +733,15 @@ function App() {
       {/* Main Content Area */}
       {/* Área de Contenido Principal */}
       <main className="main-content">
-        {/* Apply animation class based on state */}
-        {/* Aplicar clase de animación según el estado */}
-        <div className={`page-wrapper ${isAnimating ? "animating-exit" : ""}`}>
-          {renderPage()}
-        </div>
+        {/* Apply page-content class for styling */}
+        {/* Aplicar clase page-content para estilos */}
+        <div className="page-content">{renderPage()}</div>
       </main>
 
       {/* Optional Footer */}
       {/* Pie de Página Opcional */}
       {/* <footer className="footer">
-            <p>&copy; {new Date().getFullYear()} Enrique Martínez Mejía</p>
+            <p>© {new Date().getFullYear()} Enrique Martínez Mejía</p>
        </footer> */}
     </div>
   );

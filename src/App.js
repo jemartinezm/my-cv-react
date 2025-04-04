@@ -20,7 +20,8 @@ const personalInfo = {
   photoUrl: fotoPerfil, // Replace with your actual photo URL / Reemplaza con la URL de tu foto real
   // --- Placeholder for YouTube Video Embed URL ---
   // --- Marcador de posición para URL de Inserción de Video de YouTube ---
-  youtubeEmbedUrl: "https://www.youtube.com/watch?v=krbWdZkj9M0", // <-- !!! REEMPLAZA ESTO con la URL "embed" de tu video de YouTube !!!
+  youtubeEmbedUrl:
+    "https://www.youtube.com/embed/krbWdZkj9M0?si=Yk4QhuwcJF-hdhL1", // <-- !!! REEMPLAZA ESTO con la URL "embed" de tu video de YouTube !!!
 };
 
 const objective =

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // Import the CSS file (needed for actual execution, ignored by preview)
 // Importar el archivo CSS (necesario para ejecución real, ignorado por preview)
 import "./App.css";
